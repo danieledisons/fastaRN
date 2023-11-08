@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import {
   NativeBaseProvider,
@@ -10,7 +10,41 @@ import {
   Button,
 } from "native-base";
 
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, resetState } from "../context/actions/authActions";
+
+// dispatch(resetState())
+
 const Loginscreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const authData = useSelector((state) => state.auth);
+
+  const [loadingToggle, setLoadingToggle] = useState(false);
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+
+  console.log(222, authData);
+  // console.log(111, emailInput, 222, passwordInput);
+
+  const handleEmailInput = (Text) => {
+    setEmailInput(Text);
+  };
+  const handlePasswordInput = (Text) => {
+    setPasswordInput(Text);
+  };
+
+  const handleLogin = () => {
+    setLoadingToggle(true);
+    dispatch(loginUser(emailInput, passwordInput));
+  };
+
+  useEffect(() => {
+    if (authData.token !== null) {
+      setLoadingToggle(false);
+      navigation.navigate("Display");
+    }
+  }, [authData.token]);
+
   return (
     <NativeBaseProvider>
       <View>
@@ -36,9 +70,19 @@ const Loginscreen = ({ navigation }) => {
               </Text>
             </VStack>
             {"\n"}
-            <Input size="xl" placeholder="Email" variant="rounded" />
+            <Input
+              onChangeText={handleEmailInput}
+              size="xl"
+              placeholder="Email"
+              variant="rounded"
+            />
             {"\n"}
-            <Input size="xl" placeholder="Password" variant="rounded" />
+            <Input
+              onChangeText={handlePasswordInput}
+              size="xl"
+              placeholder="Password"
+              variant="rounded"
+            />
             <Stack direction="column">
               <Center>
                 <Button variant="link" isDisabled>
@@ -61,6 +105,8 @@ const Loginscreen = ({ navigation }) => {
                     minHeight: 50,
                     marginTop: 16,
                   }}
+                  onPress={handleLogin}
+                  isLoading={loadingToggle}
                 >
                   <Text style={{ color: "white", fontWeight: "bold" }}>
                     Sign In

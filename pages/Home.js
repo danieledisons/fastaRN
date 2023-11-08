@@ -44,7 +44,7 @@ const Homescreen = ({ navigation }) => {
               }}
               onPress={() => navigation.navigate("Register")}
             >
-              Register
+              Create User
             </Button>
           </Box>
         </HStack>

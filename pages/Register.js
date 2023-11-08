@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import {
   NativeBaseProvider,
@@ -9,20 +9,32 @@ import {
   Center,
   Button,
 } from "native-base";
-import registerAPI from "../api/axiosRegister";
+
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../context/actions/registerActions";
 
 const RegisterScreen = ({ navigation }) => {
-  const [emailState, setEmailState] = useState("");
-  const [passwordState, setPasswordState] = useState("");
-  const [confirmPasswordState, setConfirmPasswordState] = useState("");
+  const dispatch = useDispatch();
+  const registerData = useSelector((state) => state.register);
+
+  console.log(8080, registerData);
+
+  const [firstNameState, setFirstNameState] = useState("");
+  const [lastNameState, setLastNameState] = useState("");
+  const [emailAddressState, setEmailAddressState] = useState("");
   const [loadingToggle, setLoadingToggle] = useState(false);
 
   const handleClick = () => {
     setLoadingToggle(true);
-    if (passwordState === confirmPasswordState) {
-      registerAPI(emailState, passwordState);
-    }
+    dispatch(registerUser(firstNameState, lastNameState, emailAddressState));
   };
+
+  useEffect(() => {
+    if (registerData.data !== null) {
+      setLoadingToggle(false);
+      // navigation.navigate("Home");
+    }
+  }, [registerData.data]);
   return (
     <NativeBaseProvider>
       <View>
@@ -44,21 +56,21 @@ const RegisterScreen = ({ navigation }) => {
 
           <Input
             size="xl"
-            placeholder="Email"
+            placeholder="First Name"
             variant="rounded"
-            onChangeText={(text) => setEmailState(text)}
+            onChangeText={(text) => setFirstNameState(text)}
           />
           <Input
             size="xl"
-            placeholder="Password"
+            placeholder="Last Name"
             variant="rounded"
-            onChangeText={(text) => setPasswordState(text)}
+            onChangeText={(text) => setLastNameState(text)}
           />
           <Input
             size="xl"
-            placeholder="Confirm Password"
+            placeholder="Email Address"
             variant="rounded"
-            onChangeText={(text) => setConfirmPasswordState(text)}
+            onChangeText={(text) => setEmailAddressState(text)}
           />
           <Center>
             <Button
