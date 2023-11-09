@@ -56,6 +56,7 @@ const UserInfoScreen = ({ navigation }) => {
         onClose={() => setModalVisible(false)}
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
+        avoidKeyboard
       >
         <Modal.Content>
           <Modal.CloseButton />

@@ -30,12 +30,9 @@ const UsersViewScreen = () => {
     fetchOtherUsers();
   }, []);
 
-  console.log(222, usersData);
-
   return (
     <NativeBaseProvider>
       <ScrollView>
-        <Text>User View Screen</Text>
         {usersData?.map((user) => {
           return (
             <Center>

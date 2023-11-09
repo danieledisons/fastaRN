@@ -37,8 +37,6 @@ const Loginscreen = ({ navigation }) => {
     dispatch(resetState());
   }, []);
 
-  console.log(222, authData);
-
   const handleEmailInput = (Text) => {
     setEmailInput(Text);
   };

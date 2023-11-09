@@ -18,7 +18,6 @@ export const getUserData = () => {
       .then((response) => {
         const userData = response.data.data;
         if (response.status === 200) {
-          console.log(888, userData);
           dispatch(getUserDataSuccess(userData));
         } else {
           throw new Error("Failed to fetch data");

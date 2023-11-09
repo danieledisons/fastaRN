@@ -28,10 +28,14 @@ const Homescreen = ({ navigation }) => {
         <HStack space={3} justifyContent="center">
           <Box alignItems="center">
             <Button
-              style={{ minWidth: 150, backgroundColor: "#1F41BB" }}
+              style={{
+                minWidth: 150,
+                backgroundColor: "#1F41BB",
+                minHeight: 40,
+              }}
               onPress={() => navigation.navigate("Login")}
             >
-              Login
+              <Text style={{ fontWeight: "bold", color: "white" }}>Login</Text>
             </Button>
           </Box>
           <Box alignItems="center">
@@ -41,10 +45,14 @@ const Homescreen = ({ navigation }) => {
                 backgroundColor: "#1F41BB",
                 borderColor: "#1F41BB",
                 fontWeight: "bold",
+                minHeight: 40,
               }}
               onPress={() => navigation.navigate("Register")}
             >
-              Create User
+              <Text style={{ fontWeight: "bold", color: "white" }}>
+                {" "}
+                Create User
+              </Text>
             </Button>
           </Box>
         </HStack>

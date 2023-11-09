@@ -17,8 +17,6 @@ const RegisterScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const registerData = useSelector((state) => state.register);
 
-  console.log(8080, registerData);
-
   const [firstNameState, setFirstNameState] = useState("");
   const [lastNameState, setLastNameState] = useState("");
   const [emailAddressState, setEmailAddressState] = useState("");

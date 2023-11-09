@@ -19,7 +19,6 @@ export const loginUser = (email, password) => {
         }
       })
       .catch((error) => {
-        console.log(222, error);
         dispatch(loginFailure(error));
       });
   };
