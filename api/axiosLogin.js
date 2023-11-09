@@ -8,7 +8,6 @@ const loginAPI = (email, password) => {
   axios
     .post("https://reqres.in/api/login", data)
     .then((response) => {
-      console.log("Response:", response.status);
       return response.status;
     })
     .catch((error) => {

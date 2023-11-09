@@ -13,8 +13,10 @@ import {
   CloseIcon,
   HStack,
   Collapse,
+  Pressable,
+  Icon,
 } from "native-base";
-
+import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, resetState } from "../context/actions/authActions";
 
@@ -31,6 +33,7 @@ const Loginscreen = ({ navigation }) => {
   const [screenOpen, setScreenOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShow] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     setScreenOpen(true);
@@ -64,7 +67,6 @@ const Loginscreen = ({ navigation }) => {
       setLoadingToggle(false);
     }
   }, [authData?.error]);
-  console.log("error", authData?.error);
 
   return (
     <NativeBaseProvider>
@@ -150,6 +152,26 @@ const Loginscreen = ({ navigation }) => {
             />
             {"\n"}
             <Input
+              // Toggle See Password
+              type={showPassword ? "text" : "password"}
+              InputRightElement={
+                <Pressable
+                  onPress={() => {
+                    setShowPassword(!showPassword);
+                  }}
+                >
+                  <Icon
+                    as={
+                      <MaterialIcons
+                        name={showPassword ? "visibility" : "visibility-off"}
+                      />
+                    }
+                    size={5}
+                    mr="2"
+                    color="muted.400"
+                  />
+                </Pressable>
+              }
               onChangeText={handlePasswordInput}
               size="xl"
               placeholder="Password"
