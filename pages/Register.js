@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, BackHandler } from "react-native";
 import {
   NativeBaseProvider,
   VStack,
@@ -11,7 +11,7 @@ import {
 } from "native-base";
 
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../context/actions/registerActions";
+import { registerUser, resetState } from "../context/actions/registerActions";
 
 const RegisterScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const RegisterScreen = ({ navigation }) => {
   const [lastNameState, setLastNameState] = useState("");
   const [emailAddressState, setEmailAddressState] = useState("");
   const [loadingToggle, setLoadingToggle] = useState(false);
+  const [screenOpen, setScreenOpen] = useState(false);
 
   const handleClick = () => {
     setLoadingToggle(true);
@@ -30,11 +31,17 @@ const RegisterScreen = ({ navigation }) => {
   };
 
   useEffect(() => {
-    if (registerData.data !== null) {
+    if (registerData.data !== null && screenOpen === true) {
       setLoadingToggle(false);
       navigation.navigate("User Info");
     }
   }, [registerData.data]);
+
+  useEffect(() => {
+    setScreenOpen(true);
+    dispatch(resetState());
+  }, []);
+
   return (
     <NativeBaseProvider>
       <View>

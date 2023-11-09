@@ -18,6 +18,9 @@ export const loginUser = (email, password) => {
           throw new Error("Failed to login");
         }
       })
-      .catch((error) => dispatch(loginFailure(error)));
+      .catch((error) => {
+        console.log(222, error);
+        dispatch(loginFailure(error));
+      });
   };
 };

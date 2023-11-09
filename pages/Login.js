@@ -8,6 +8,11 @@ import {
   Input,
   Center,
   Button,
+  Alert,
+  IconButton,
+  CloseIcon,
+  HStack,
+  Collapse,
 } from "native-base";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -22,9 +27,17 @@ const Loginscreen = ({ navigation }) => {
   const [loadingToggle, setLoadingToggle] = useState(false);
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+  const [displayError, setDisplayError] = useState(false);
+  const [screenOpen, setScreenOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setScreenOpen(true);
+    dispatch(resetState());
+  }, []);
 
   console.log(222, authData);
-  // console.log(111, emailInput, 222, passwordInput);
 
   const handleEmailInput = (Text) => {
     setEmailInput(Text);
@@ -45,8 +58,58 @@ const Loginscreen = ({ navigation }) => {
     }
   }, [authData.token]);
 
+  useEffect(() => {
+    if (authData?.error) {
+      setShow(true);
+      setDisplayError(true);
+      setErrorMessage(`${authData.error}`);
+      setLoadingToggle(false);
+    }
+  }, [authData?.error]);
+  console.log("error", authData?.error);
+
   return (
     <NativeBaseProvider>
+      {displayError ? (
+        <Collapse isOpen={show}>
+          <Alert maxW="400" status="error" colorScheme="error">
+            <VStack space={2} flexShrink={1} w="100%">
+              <HStack
+                flexShrink={1}
+                space={2}
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <HStack flexShrink={1} space={2} alignItems="center">
+                  <Alert.Icon />
+                  <Text fontSize="md" fontWeight="medium" color="coolGray.800">
+                    Error Message
+                  </Text>
+                </HStack>
+                <IconButton
+                  onPress={() => setShow(false)}
+                  variant="unstyled"
+                  _focus={{
+                    borderWidth: 0,
+                  }}
+                  icon={<CloseIcon size="3" />}
+                  _icon={{
+                    color: "coolGray.600",
+                  }}
+                />
+              </HStack>
+              <Box
+                pl="6"
+                _text={{
+                  color: "coolGray.600",
+                }}
+              >
+                Input the correct Email and Password {errorMessage}
+              </Box>
+            </VStack>
+          </Alert>
+        </Collapse>
+      ) : null}
       <View>
         <VStack space={4} alignItems="center">
           <Box>

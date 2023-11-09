@@ -1,43 +1,56 @@
-import React from "react";
-import { NativeBaseProvider, Button } from "native-base";
-import { Text } from "react-native";
-
+import React, { useEffect } from "react";
+import { NativeBaseProvider, Center, VStack } from "native-base";
+import { Text, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getUserData } from "../context/actions/userActions";
-
-import { connect } from "react-redux";
-import { getUserDataRequest } from "../context/actions/userActions";
-
-// import { getUserDataRequest } from "../context/actions/userActions";
 
 const Displayscreen = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.user);
 
-  console.log(777, data);
+  useEffect(() => {
+    dispatch(getUserData());
+  }, []);
 
   return (
     <NativeBaseProvider>
-      <Text>Display User Info</Text>
-      <Text>{data ? data?.data?.email : "No data available"}</Text>
-      <Button
-        onPress={() => {
-          dispatch(getUserData());
-        }}
-      >
-        Click to use redux
-      </Button>
+      <Center>
+        <Image
+          source={{ uri: `${data?.data?.avatar}` }}
+          style={{ width: 200, height: 200, marginTop: 16 }}
+        />
+      </Center>
+      <Center>
+        <VStack>
+          <Text
+            style={{
+              fontSize: 30,
+              fontWeight: "bold",
+              color: "#1F41BB",
+              marginBottom: 16,
+              marginTop: 16,
+            }}
+          >
+            {data ? data?.data?.email : "No data available"}
+          </Text>
+          <Center>
+            <Text
+              style={{
+                fontSize: 30,
+                fontWeight: "bold",
+                color: "#1F41BB",
+                marginBottom: 16,
+                marginTop: 16,
+              }}
+            >
+              {data ? data?.data?.first_name : "No data available"}
+              {data ? data?.data?.last_name : "No data available"}
+            </Text>
+          </Center>
+        </VStack>
+      </Center>
     </NativeBaseProvider>
   );
 };
-
-// const mapStateToProps = (state) => ({
-//   user: state.user.data,
-// });
-
-// const mapDispatchToProps = {
-//   getUserDataRequest,
-// };
 
 export default Displayscreen;

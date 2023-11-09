@@ -3,6 +3,7 @@ import axios from "axios";
 export const registerRequest = () => ({ type: "REGISTER_REQUEST" });
 export const registerSuccess = (data) => ({ type: "REGISTER_SUCCESS", data });
 export const registerFailure = (error) => ({ type: "REGISTER_FAILURE", error });
+export const resetState = () => ({ type: "RESET_STATE" });
 
 export const registerUser = (first_name, last_name, email_address) => {
   const postData = {

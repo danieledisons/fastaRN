@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   NativeBaseProvider,
   Button,
@@ -18,10 +18,6 @@ const UserInfoScreen = () => {
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
-  const [updatedFirstName, setUpdatedFirstName] = useState("");
-  const [updatedLastName, setUpdatedLastName] = useState("");
-  const [loadingToggle, setLoadingToggle] = useState(false);
-
   const dispatch = useDispatch();
   const registerData = useSelector((state) => state.register);
 
@@ -29,14 +25,28 @@ const UserInfoScreen = () => {
   const lastName = registerData?.data?.last_name;
   const emailAddress = registerData?.data?.email_address;
 
-  console.log(9123, registerData);
+  const [updatedFirstName, setUpdatedFirstName] = useState(`${firstName}`);
+  const [updatedLastName, setUpdatedLastName] = useState(`${lastName}`);
+  const [updatedEmailAddress, setUpdatedEmailAddress] = useState(
+    `${emailAddress}`
+  );
 
   const handleUpdate = () => {
-    // setLoadingToggle(true);
     dispatch(
-      registerUser(updatedFirstName, updatedLastName, emailAddressState)
+      registerUser(updatedFirstName, updatedLastName, updatedEmailAddress)
     );
     setModalVisible(false);
+  };
+
+  const handleFirstNameChange = (Text) => {
+    setUpdatedFirstName(Text);
+  };
+  const handleLastNameChange = (Text) => {
+    setUpdatedLastName(Text);
+  };
+
+  const handleEmailChange = (Text) => {
+    setUpdatedEmailAddress(Text);
   };
 
   return (
@@ -53,15 +63,25 @@ const UserInfoScreen = () => {
           <Modal.Body>
             <FormControl>
               <FormControl.Label>First Name</FormControl.Label>
-              <Input ref={initialRef} value={firstName} />
+              <Input
+                ref={initialRef}
+                value={updatedFirstName}
+                onChangeText={handleFirstNameChange}
+              />
             </FormControl>
             <FormControl mt="3">
               <FormControl.Label>Last Name</FormControl.Label>
-              <Input value={lastName} />
+              <Input
+                value={updatedLastName}
+                onChangeText={handleLastNameChange}
+              />
             </FormControl>
             <FormControl mt="3">
               <FormControl.Label>Email Address</FormControl.Label>
-              <Input value={emailAddress} />
+              <Input
+                value={updatedEmailAddress}
+                onChangeText={handleEmailChange}
+              />
             </FormControl>
           </Modal.Body>
           <Modal.Footer>
@@ -75,7 +95,9 @@ const UserInfoScreen = () => {
               >
                 Cancel
               </Button>
-              <Button onPress={handleUpdate}>Save</Button>
+              <Button isLoading={registerData?.loading} onPress={handleUpdate}>
+                Save
+              </Button>
             </Button.Group>
           </Modal.Footer>
         </Modal.Content>
