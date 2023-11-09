@@ -30,12 +30,14 @@ const UsersViewScreen = () => {
     fetchOtherUsers();
   }, []);
 
+  console.log(usersData);
+
   return (
     <NativeBaseProvider>
       <ScrollView>
         {usersData?.map((user) => {
           return (
-            <Center>
+            <Center key={user?.id}>
               <Box
                 Box
                 maxW="80"

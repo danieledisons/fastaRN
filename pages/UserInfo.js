@@ -124,7 +124,12 @@ const UserInfoScreen = ({ navigation }) => {
       </Center>
       <Center>
         <Button
-          style={{ backgroundColor: "#1F41BB", marginTop: 16, maxWidth: 180 }}
+          style={{
+            backgroundColor: "#1F41BB",
+            marginTop: 16,
+            maxWidth: 180,
+            minHeight: 50,
+          }}
           onPress={() => {
             setModalVisible(!modalVisible);
           }}
@@ -134,7 +139,12 @@ const UserInfoScreen = ({ navigation }) => {
       </Center>
       <Center>
         <Button
-          style={{ backgroundColor: "#1F41BB", marginTop: 32, maxWidth: 180 }}
+          style={{
+            backgroundColor: "#1F41BB",
+            marginTop: 32,
+            maxWidth: 180,
+            minHeight: 50,
+          }}
           onPress={() => navigation.navigate("Users View")}
         >
           View Other Users

@@ -112,7 +112,7 @@ const Loginscreen = ({ navigation }) => {
                     color: "coolGray.600",
                   }}
                 >
-                  Input the correct Email and Password. {errorMessage}
+                  Input the Correct Email and Password. {errorMessage}
                 </Box>
               </VStack>
             </Alert>

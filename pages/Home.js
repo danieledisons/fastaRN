@@ -31,7 +31,7 @@ const Homescreen = ({ navigation }) => {
               style={{
                 minWidth: 150,
                 backgroundColor: "#1F41BB",
-                minHeight: 40,
+                minHeight: 50,
               }}
               onPress={() => navigation.navigate("Login")}
             >
@@ -45,7 +45,7 @@ const Homescreen = ({ navigation }) => {
                 backgroundColor: "#1F41BB",
                 borderColor: "#1F41BB",
                 fontWeight: "bold",
-                minHeight: 40,
+                minHeight: 50,
               }}
               onPress={() => navigation.navigate("Register")}
             >
