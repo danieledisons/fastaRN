@@ -71,44 +71,55 @@ const Loginscreen = ({ navigation }) => {
   return (
     <NativeBaseProvider>
       {displayError ? (
-        <Collapse isOpen={show}>
-          <Alert maxW="400" status="error" colorScheme="error">
-            <VStack space={2} flexShrink={1} w="100%">
-              <HStack
-                flexShrink={1}
-                space={2}
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <HStack flexShrink={1} space={2} alignItems="center">
-                  <Alert.Icon />
-                  <Text fontSize="md" fontWeight="medium" color="coolGray.800">
-                    Error Message
-                  </Text>
+        <Center>
+          <Collapse isOpen={show}>
+            <Alert
+              maxW="400"
+              status="error"
+              colorScheme="error"
+              style={{ minWidth: "100vw" }}
+            >
+              <VStack space={2} flexShrink={1} w="100%">
+                <HStack
+                  flexShrink={1}
+                  space={2}
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <HStack flexShrink={1} space={2} alignItems="center">
+                    <Alert.Icon />
+                    <Text
+                      fontSize="md"
+                      fontWeight="medium"
+                      color="coolGray.800"
+                    >
+                      Error Message
+                    </Text>
+                  </HStack>
+                  <IconButton
+                    onPress={() => setShow(false)}
+                    variant="unstyled"
+                    _focus={{
+                      borderWidth: 0,
+                    }}
+                    icon={<CloseIcon size="3" />}
+                    _icon={{
+                      color: "coolGray.600",
+                    }}
+                  />
                 </HStack>
-                <IconButton
-                  onPress={() => setShow(false)}
-                  variant="unstyled"
-                  _focus={{
-                    borderWidth: 0,
-                  }}
-                  icon={<CloseIcon size="3" />}
-                  _icon={{
+                <Box
+                  pl="6"
+                  _text={{
                     color: "coolGray.600",
                   }}
-                />
-              </HStack>
-              <Box
-                pl="6"
-                _text={{
-                  color: "coolGray.600",
-                }}
-              >
-                Input the correct Email and Password {errorMessage}
-              </Box>
-            </VStack>
-          </Alert>
-        </Collapse>
+                >
+                  Input the correct Email and Password. {errorMessage}
+                </Box>
+              </VStack>
+            </Alert>
+          </Collapse>
+        </Center>
       ) : null}
       <View>
         <VStack space={4} alignItems="center">

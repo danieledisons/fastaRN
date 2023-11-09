@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { registerUser } from "../context/actions/registerActions";
 
-const UserInfoScreen = () => {
+const UserInfoScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
@@ -115,18 +115,28 @@ const UserInfoScreen = () => {
           Welcome {firstName} {lastName}
         </Text>
       </Center>
-      <Image
-        source={require("../assets/lady1.png")}
-        style={{ width: 360, height: 226 }}
-      />
+      <Center>
+        <Image
+          source={require("../assets/lady1.png")}
+          style={{ width: 360, height: 226 }}
+        />
+      </Center>
       <Center>
         <Button
-          style={{ backgroundColor: "#1F41BB", marginTop: 16, maxWidth: 200 }}
+          style={{ backgroundColor: "#1F41BB", marginTop: 16, maxWidth: 180 }}
           onPress={() => {
             setModalVisible(!modalVisible);
           }}
         >
           Click Here to Edit Details
+        </Button>
+      </Center>
+      <Center>
+        <Button
+          style={{ backgroundColor: "#1F41BB", marginTop: 32, maxWidth: 180 }}
+          onPress={() => navigation.navigate("Users View")}
+        >
+          View Other Users
         </Button>
       </Center>
     </NativeBaseProvider>
