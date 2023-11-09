@@ -32,7 +32,7 @@ const RegisterScreen = ({ navigation }) => {
   useEffect(() => {
     if (registerData.data !== null) {
       setLoadingToggle(false);
-      // navigation.navigate("Home");
+      navigation.navigate("User Info");
     }
   }, [registerData.data]);
   return (

@@ -8,7 +8,7 @@ const Homescreen = ({ navigation }) => {
       <View>
         <Center>
           <Image
-            source={require("../assets/welcome.png")}
+            source={require("../assets/welcome1.png")}
             style={{ width: 363, height: 370, marginBottom: 30 }}
           />
         </Center>
