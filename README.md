@@ -11,7 +11,7 @@ This is a mobile application built using Expo, which allows you to [briefly desc
 1. Clone this repository: `git clone https://github.com/yourusername/my-expo-app.git`
 2. Navigate to the project directory: `cd my-expo-app`
 3. Install dependencies: `npm install`
-4. Start the Expo development server: `npm start`
+4. Start the Expo development server: `npm expo start`
 5. Scan the QR code with the Expo Go app on your mobile device to run the app.
 
 ## Usage
