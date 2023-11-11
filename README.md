@@ -22,6 +22,13 @@ This is a mobile application built using Expo, which allows you to log in and cr
 - Makes use of Redux for State Management and Axios for API calls/requests.
 - Makes use of Native Base as the UI library
 
+## Screenshots
+<img width="400" alt="Screenshot 2023-11-11 at 8 08 59 AM" src="https://github.com/danieledisons/fastaRN/assets/57553679/73fabfc7-0ee9-4ce1-802e-cb539fad1e60">
+<img width="402" alt="Screenshot 2023-11-11 at 8 09 31 AM" src="https://github.com/danieledisons/fastaRN/assets/57553679/0848a3c0-a1a4-4571-9d10-18cf5c2c47d3">
+<img width="399" alt="Screenshot 2023-11-11 at 8 10 35 AM" src="https://github.com/danieledisons/fastaRN/assets/57553679/3a98d9d6-8707-4931-821c-ce09a0446c4f">
+<img width="405" alt="Screenshot 2023-11-11 at 8 10 55 AM" src="https://github.com/danieledisons/fastaRN/assets/57553679/eb02ce6a-3ba5-4c93-a2ff-0aa3241e98ef">
+
+
 
 Feel free to reach out if you have any questions or feedback!
 
